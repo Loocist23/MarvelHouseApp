@@ -5,8 +5,11 @@ class ParametrePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Parametre'),
+      ),
+      body: const Center(
         child: Text(
           'Parametre Page',
           style: TextStyle(

@@ -5,6 +5,7 @@ import 'package:marvelhouse/screen/search.dart';
 import 'package:marvelhouse/screen/addpost.dart';
 import 'package:marvelhouse/screen/notif.dart';
 import 'package:marvelhouse/screen/parametre.dart';
+import 'package:pocketbase/pocketbase.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,8 +25,11 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
-  static List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
+  final PocketBase pb = PocketBase('http://192.168.0.28:8090'); // Initialisez PocketBase ici
+
+  // Changez _widgetOptions pour être dynamique afin qu'il puisse utiliser l'instance pb
+  List<Widget> get _widgetOptions => <Widget>[
+    HomePage(pb: pb), // Passez pb à HomePage
     NotifPage(),
     SearchPage(),
     AddPostPage(),
@@ -107,6 +111,7 @@ class _MainScreenState extends State<MainScreen> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
+        unselectedItemColor: Colors.grey[700],
         onTap: _onItemTapped,
       ),
     );
